@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Programownie funkcyjne w JS</title>
+
+	<meta name="description"
+	 content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author"
+	 content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable"
+	 content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style"
+	 content="black-translucent">
+
+	<meta name="viewport"
+	 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet"
+	 href="css/reveal.css">
+	<link rel="stylesheet"
+	 href="css/theme.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet"
+	 href="lib/css/zenburn.css">
+
+	<link rel="icon"
+	 href="./img/logo.png"
+	 type="img/png"
+	 sizes="32x32">
+
+	<style>
+		pre {
+			background: #3f3f3f;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section data-background-image="img/title.jpg"
+			 class="title-dark-slide">
+				<h3>Programownie funkcyjne w
+					<span style="color: #f0db4f;">JS</span>
+				</h3>
+			</section>
+
+			<section>
+				<h3>Programownie funkcyjne</h3>
+				<ul>
+					<li class="fragment">Czy JavaScript jest językiem funkcyjnym?</li>
+					<li class="fragment">Dlaczeo powinniśmy znać paradygmat?</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Czyste funkcje</h3>
+				<pre>
+<code class="hljs" data-trim>
+const x = 1
+const y = 2
+
+const impureFunction = () => x + y
+const pureFunction = (x, y) => x + y
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>Czyste funkcje</h3>
+				<pre>
+<code class="hljs" data-trim>
+const o = { a: 1 }
+
+const impureFunction = () => o.a++
+const impureFunctionEither = o => o.a++
+const pureFunction = o => Object.assign({}, o, { a: o.a + 1 })
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>Czyste funkcje</h3>
+				<pre>
+<code class="hljs" data-trim>
+const o = { a: 1 }
+
+function impureFunction() {
+	return o.a++
+}
+function impureFunctionEither(o) {
+	o.a++
+	return o
+}
+function pureFunction(o) {
+	return {...o, a: o.a + 1 }
+}
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>Mutacje</h3>
+				<pre>
+<code class="hljs" data-trim>
+const obj = { a: 1 }
+const arr = [ 3, 1, 2 ]
+
+// mutation
+obj.a = 2
+arr.sort()
+
+// immutable
+const newObj = { ...obj, a: 2 }
+const newArr = [...arr].sort()
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>Mutacje</h3>
+				<pre>
+<code class="hljs" data-trim>
+
+const a = [ 3, 1, 2 ]
+let sum = 0
+
+// mutation
+a.forEach((el, i, arr) => arr[i] = el * 2)
+a.forEach(el => sum += el)
+
+// immutable
+const newA = a.map(el => el * 2)
+const newSum = a.reduce((a, b) => a + b)
+
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>Currying</h3>
+				<pre>
+<code class="hljs" data-trim>
+const add = a => b => a + b
+add(1)(2) === 3
+</code>
+				</pre>
+			</section>
+
+			<section data-background="./img/forest.jpg">
+				<p>
+					<small>Michał Kijewicz</small>
+					<small>
+						<a href="mailto:m.kijewicz@raks.pl"
+						 style="color: #f0db4f;">m.kijewicz@raks.pl</a>
+					</small>
+				</p>
+				<img class="plain-img"
+				 width="100"
+				 src="./img/logo.png">
+
+			</section>
+
+			<script src="lib/js/head.min.js"></script>
+			<script src="js/reveal.js"></script>
+			<script src="js/initialize.js"></script>
+</body>
+
+</html>
