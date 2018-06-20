@@ -81,7 +81,8 @@ const o = { a: 1 }
 
 const impureFunction = () => o.a++
 const impureFunctionEither = o => o.a++
-const pureFunction = o => Object.assign({}, o, { a: o.a + 1 })
+const pureFunction = o =>
+	Object.assign({}, o, { a: o.a + 1 })
 </code>
 				</pre>
 			</section>
